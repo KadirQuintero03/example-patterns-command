@@ -1,26 +1,10 @@
-🎯 Editor de Texto Educativo - Implementación con Patrón Command
-📋 Tabla de Contenidos
-Descripción del Proyecto
+# Implementacion del Patrón de Comportamiento Command en un Editor de Texto para la web.
 
-Problema Identificado
+Editor de texto sencillo que otorga funcionalidades basicas que nos permitiran representar el uso mas optimo del patron de comportamiento command.
 
-Solución Implementada
+## Contexto de la problematica 
 
-Arquitectura del Sistema
-
-Funcionalidades
-
-Instalación y Uso
-
-Estructura del Proyecto
-
-Beneficios Obtenidos
-
-Extensión del Sistema
-
-
-Contexto General -> 
-Una empresa de software educativo está desarrollando una herramienta de escritura ligera para estudiantes y docentes. El objetivo es crear un editor de texto simple, basado en web, que permita realizar operaciones comunes de edición sin acoplar la interfaz gráfica a la lógica de manipulación del texto. El equipo desea que la aplicación sea fácilmente extensible, que permita agregar nuevas operaciones sin modificar la interfaz existente, y que soporte funcionalidades como deshacer y rehacer.
+Una empresa de software educativo está desarrollando una herramienta de escritura ligera para los estudiantes. El objetivo es **crear un editor de texto simple**, basado en web, **que permita realizar operaciones comunes de edición sin acoplar la interfaz gráfica a la lógica de manipulación del texto**. El equipo desea que la aplicación sea **fácilmente extensible**, que **permita agregar nuevas operaciones sin modificar la interfaz existente**, y que **soporte funcionalidades como deshacer y rehacer**.
 
 
 Durante la fase inicial del proyecto, los desarrolladores descubrieron que la interfaz estaba directamente llamando métodos que modificaban el texto del editor. Esto producía un fuerte acoplamiento entre la UI y la lógica interna, dificultando agregar nuevas operaciones o extender las existentes. Además, no existía una forma clara de implementar un historial de acciones para soportar deshacer y rehacer.
