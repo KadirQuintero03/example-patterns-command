@@ -1,4 +1,22 @@
-Patrón de Comportamiento Command aplicado en un Editor de Texto para la web
+🎯 Editor de Texto Educativo - Implementación con Patrón Command
+📋 Tabla de Contenidos
+Descripción del Proyecto
+
+Problema Identificado
+
+Solución Implementada
+
+Arquitectura del Sistema
+
+Funcionalidades
+
+Instalación y Uso
+
+Estructura del Proyecto
+
+Beneficios Obtenidos
+
+Extensión del Sistema
 
 
 Contexto General -> 
