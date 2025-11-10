@@ -1,7 +1,7 @@
 Patrón de Comportamiento Command aplicado en un Editor de Texto para la web
 
 
-Contexto General
+Contexto General -> 
 Una empresa de software educativo está desarrollando una herramienta de escritura ligera para estudiantes y docentes. El objetivo es crear un editor de texto simple, basado en web, que permita realizar operaciones comunes de edición sin acoplar la interfaz gráfica a la lógica de manipulación del texto. El equipo desea que la aplicación sea fácilmente extensible, que permita agregar nuevas operaciones sin modificar la interfaz existente, y que soporte funcionalidades como deshacer y rehacer.
 
 
@@ -11,7 +11,7 @@ Durante la fase inicial del proyecto, los desarrolladores descubrieron que la in
 Para resolverlo, se solicita implementar la funcionalidad siguiendo el patrón de comportamiento Command, encapsulando cada operación de edición en un comando independiente.
 
 
-Problema a Resolver
+Problema a Resolver -> 
 El editor debe permitir al usuario realizar las siguientes acciones:
 Insertar texto en la posición actual o reemplazando la selección.
 Borrar el texto seleccionado.
@@ -21,7 +21,7 @@ Reemplazar todas las coincidencias de un patrón en el documento.
 Deshacer y rehacer acciones ilimitadamente.
 
 
-El problema actual: la UI y la lógica de edición están fuertemente acopladas. Cada botón ejecuta directamente una operación del editor, lo que dificulta:
+El problema actual -> la UI y la lógica de edición están fuertemente acopladas. Cada botón ejecuta directamente una operación del editor, lo que dificulta:
 Extender el sistema.
 Agregar nuevas operaciones.
 Reutilizar acciones.
