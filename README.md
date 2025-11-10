@@ -22,17 +22,18 @@ Para resolverlo, se solicita implementar la funcionalidad siguiendo el patrón d
 - Deshacer y rehacer acciones ilimitadamente.
 
 
-El problema actual -> la UI y la lógica de edición están fuertemente acopladas. Cada botón ejecuta directamente una operación del editor, lo que dificulta:
-Extender el sistema.
-Agregar nuevas operaciones.
-Reutilizar acciones.
-Implementar correctamente deshacer y rehacer.
-Solución Esperada
+### La UI y la lógica de edición están fuertemente acopladas. Cada botón ejecuta directamente una operación del editor, lo que dificulta:
+- Extender el sistema.
+- Agregar nuevas operaciones.
+- Reutilizar acciones.
+- Implementar correctamente deshacer y rehacer.
+- Solución Esperada
 
 
-Aplicar el patrón Command, donde:
-Las operaciones del editor se representen como objetos comando independientes.
-El editor de texto actúe como Receiver, con métodos que realizan las modificaciones reales sobre el documento.
-La UI actúe como Client, creando comandos cuando se presionan botones.
-Un Invoker (CommandManager) se encargue de ejecutar comandos y manejar las pilas de deshacer/rehacer.
-El resultado debe ser un sistema desacoplado, donde agregar una nueva acción solo requiera crear un nuevo comando, sin modificar UI ni el Invoker.
+### Aplicar el patrón Command, donde:
+- Las operaciones del editor se representen como objetos comando independientes.
+- El editor de texto actúe como Receiver, con métodos que realizan las modificaciones reales sobre el documento.
+- La UI actúe como Client, creando comandos cuando se presionan botones.
+- Un Invoker (CommandManager) se encargue de ejecutar comandos y manejar las pilas de deshacer/rehacer.
+
+#### El resultado debe ser un sistema desacoplado, donde agregar una nueva acción solo requiera crear un nuevo comando, sin modificar UI ni el Invoker.
