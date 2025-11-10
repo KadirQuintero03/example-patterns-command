@@ -13,14 +13,13 @@ Durante la fase inicial del proyecto, los desarrolladores descubrieron que la in
 Para resolverlo, se solicita implementar la funcionalidad siguiendo el patrón de comportamiento Command, encapsulando cada operación de edición en un comando independiente.
 
 
-Problema a Resolver -> 
-El editor debe permitir al usuario realizar las siguientes acciones:
-Insertar texto en la posición actual o reemplazando la selección.
-Borrar el texto seleccionado.
-Convertir la selección a mayúsculas o minúsculas.
-Rodear la selección con caracteres (por ejemplo, ** para negrita o * para itálica).
-Reemplazar todas las coincidencias de un patrón en el documento.
-Deshacer y rehacer acciones ilimitadamente.
+### El editor debe permitir al usuario realizar las siguientes acciones:
+- Insertar texto en la posición actual o reemplazando la selección.
+- Borrar el texto seleccionado.
+- Convertir la selección a mayúsculas o minúsculas.
+- Rodear la selección con caracteres (por ejemplo, ** para negrita o * para itálica).
+- Reemplazar todas las coincidencias de un patrón en el documento.
+- Deshacer y rehacer acciones ilimitadamente.
 
 
 El problema actual -> la UI y la lógica de edición están fuertemente acopladas. Cada botón ejecuta directamente una operación del editor, lo que dificulta:
