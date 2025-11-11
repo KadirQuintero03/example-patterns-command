@@ -1,39 +1,37 @@
-# Implementacion del Patrón de Comportamiento Command en un Editor de Texto para la web.
+# Implementación del Patrón de Comportamiento Command en un Sistema Web de Procesamiento de Pagos
 
-Editor de texto sencillo que otorga funcionalidades basicas que nos permitiran representar el uso mas optimo del patron de comportamiento command.
+Aplicación web que simula un flujo básico de pagos con tarjeta, transferencia bancaria y criptomonedas, diseñada para demostrar un uso óptimo del patrón de comportamiento Command.
 
 ## Contexto de la problematica 
 
-Una empresa de software educativo está desarrollando una herramienta de escritura ligera para los estudiantes. El objetivo es **crear un editor de texto simple**, basado en web, **que permita realizar operaciones comunes de edición sin acoplar la interfaz gráfica a la lógica de manipulación del texto**. El equipo desea que la aplicación sea **fácilmente extensible**, que **permita agregar nuevas operaciones sin modificar la interfaz existente**, y que **soporte funcionalidades como deshacer y rehacer**.
+Una empresa financiera desea desarrollar una plataforma educativa interactiva que permita a nuevos programadores comprender cómo funcionan los flujos de pago dentro de un entorno web. El objetivo es construir una **miniaplicación que pueda procesar diferentes métodos de pago**, mostrar visualmente el flujo interno de ejecución y permitir al usuario experimentar con escenarios simulados en tiempo real.
 
 
-Durante la fase inicial del proyecto, los desarrolladores descubrieron que la interfaz estaba directamente llamando métodos que modificaban el texto del editor. Esto producía un fuerte acoplamiento entre la UI y la lógica interna, dificultando agregar nuevas operaciones o extender las existentes. Además, no existía una forma clara de implementar un historial de acciones para soportar deshacer y rehacer.
+**Durante el desarrollo inicial se identificó un problema fundamental:**
+la lógica encargada de procesar cada tipo de pago estaba **fuertemente acoplada a los componentes de la interfaz**. 
 
 
-Para resolverlo, se solicita implementar la funcionalidad siguiendo el patrón de comportamiento Command, encapsulando cada operación de edición en un comando independiente.
+### Esto provocaba que:
+- Cada método de pago exigiera condicionales repetidos.
+- Cualquier cambio en la lógica obligara a modificar la UI. 
+- Agregar un nuevo método de pago fuera complejo y arriesgado.
+- No existiera una estructura clara para representar el flujo de ejecución interno.
 
 
-### El editor debe permitir al usuario realizar las siguientes acciones:
-- Insertar texto en la posición actual o reemplazando la selección.
-- Borrar el texto seleccionado.
-- Convertir la selección a mayúsculas o minúsculas.
-- Rodear la selección con caracteres (por ejemplo, ** para negrita o * para itálica).
-- Reemplazar todas las coincidencias de un patrón en el documento.
-- Deshacer y rehacer acciones ilimitadamente.
+### El equipo requería una solución que permitiera:
+- **Extender el sistema fácilmente** con nuevos métodos de pago.
+- Desacoplar la UI de los servicios reales que procesan pagos.
+- epresentar visualmente el flujo Command → Service → Resultado.
+- **Mantener un historial de pagos y resultados** sin contaminar la interfaz.
 
 
-### La UI y la lógica de edición están fuertemente acopladas. Cada botón ejecuta directamente una operación del editor, lo que dificulta:
-- Extender el sistema.
-- Agregar nuevas operaciones.
-- Reutilizar acciones.
-- Implementar correctamente deshacer y rehacer.
-- Solución Esperada
+### Funcionalidades esperadas del sistema
+La aplicación debe permitir al usuario:
 
+- Seleccionar un método de pago: tarjeta, transferencia o criptomonedas.
+- Ejecutar un pago por un monto definido.
+- Visualizar la animación correspondiente al método.
+- Ver el flujo interno del patrón Command:
+- Registrar un historial de pagos
 
-### Aplicar el patrón Command, donde:
-- Las operaciones del editor se representen como objetos comando independientes.
-- El editor de texto actúe como Receiver, con métodos que realizan las modificaciones reales sobre el documento.
-- La UI actúe como Client, creando comandos cuando se presionan botones.
-- Un Invoker (CommandManager) se encargue de ejecutar comandos y manejar las pilas de deshacer/rehacer.
-
-#### El resultado debe ser un sistema desacoplado, donde agregar una nueva acción solo requiera crear un nuevo comando, sin modificar UI ni el Invoker.
+Manteniendo que todo el flujo sea modular, extensible y sin acoplamiento innecesario.
