@@ -1,11 +1,6 @@
 "use client"
 
-interface PaymentInputProps {
-  value: string
-  onChange: (value: string) => void
-  onPay: () => void
-  disabled: boolean
-}
+import { PaymentInputProps } from "../interface/payment-input.interface"
 
 export function PaymentInput({ value, onChange, onPay, disabled }: PaymentInputProps) {
   return (

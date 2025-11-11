@@ -4,10 +4,7 @@ import { CardPaymentAnimation } from "./card-payment-animation"
 import { BankTransferAnimation } from "./bank-transfer-animation"
 import { CryptoPaymentAnimation } from "./crypto-payment-animation"
 
-interface PaymentMethodAnimationProps {
-  method: "card" | "bank" | "crypto" | null
-  active: boolean
-}
+import { PaymentMethodAnimationProps } from "../interface/payment-method-animation.interface"
 
 export function PaymentMethodAnimation({ method, active }: PaymentMethodAnimationProps) {
   if (!active || !method) {

@@ -1,9 +1,6 @@
 "use client"
 
-interface PaymentMethodSelectorProps {
-  selected: string | null
-  onSelect: (method: "card" | "bank" | "crypto") => void
-}
+import { PaymentMethodSelectorProps } from "../interface/payment-method-selector.interface"
 
 export function PaymentMethodSelector({ selected, onSelect }: PaymentMethodSelectorProps) {
   const methods = [
@@ -18,11 +15,10 @@ export function PaymentMethodSelector({ selected, onSelect }: PaymentMethodSelec
         <button
           key={method.id}
           onClick={() => onSelect(method.id as "card" | "bank" | "crypto")}
-          className={`relative p-6 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 ${
-            selected === method.id
+          className={`relative p-6 rounded-lg border-2 transition-all duration-300 transform hover:scale-105 ${selected === method.id
               ? `border-primary bg-primary/10 shadow-lg shadow-primary/20`
               : "border-border bg-card hover:border-primary/50"
-          }`}
+            }`}
         >
           <div className="space-y-3">
             <div className={`text-4xl ${method.emoji}`}></div>
