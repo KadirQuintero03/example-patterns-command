@@ -7,15 +7,14 @@ import { PaymentHistory } from "./components/payment-history"
 import { FlowVisualization } from "./components/flow-visualization"
 import { EducationalPanel } from "./components/educational-panel"
 import { PaymentMethodAnimation } from "./components/payment-method-animation"
-import {
-  PaymentProcessor,
-  CardPaymentCommand,
-  BankTransferCommand,
-  CryptoPaymentCommand,
-  CardPaymentService,
-  BankTransferService,
-  CryptoPaymentService,
-} from "./lib/command-pattern"
+
+import { PaymentProcessor } from "./lib/patterns/command/payment-processor"
+import { CardPaymentCommand } from "./lib/patterns/command/commands/card-payment-command"
+import { BankTransferCommand } from "./lib/patterns/command/commands/bank-transfer-command"
+import { CryptoPaymentCommand } from "./lib/patterns/command/commands/crypto-payment-command"
+import { CardPaymentService } from "./lib/services/card-payment.service"
+import { BankTransferService } from "./lib/services/bank-transfer.service"
+import { CryptoPaymentService } from "./lib/services/crypto-payment.service"
 
 interface PaymentRecord {
   id: string
