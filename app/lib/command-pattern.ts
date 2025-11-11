@@ -24,21 +24,21 @@ export class CryptoPaymentService {
 
 // Comandos concretos
 export class CardPaymentCommand implements PaymentCommand {
-  constructor(private service: CardPaymentService) {}
+  constructor(private service: CardPaymentService) { }
   execute(amount: number): void {
     this.service.process(amount)
   }
 }
 
 export class BankTransferCommand implements PaymentCommand {
-  constructor(private service: BankTransferService) {}
+  constructor(private service: BankTransferService) { }
   execute(amount: number): void {
     this.service.process(amount)
   }
 }
 
 export class CryptoPaymentCommand implements PaymentCommand {
-  constructor(private service: CryptoPaymentService) {}
+  constructor(private service: CryptoPaymentService) { }
   execute(amount: number): void {
     this.service.process(amount)
   }
