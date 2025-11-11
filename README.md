@@ -1,39 +1,36 @@
-# Implementacion del Patrón de Comportamiento Command en un Editor de Texto para la web.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-Editor de texto sencillo que otorga funcionalidades basicas que nos permitiran representar el uso mas optimo del patron de comportamiento command.
+## Getting Started
 
-## Contexto de la problematica 
+First, run the development server:
 
-Una empresa de software educativo está desarrollando una herramienta de escritura ligera para los estudiantes. El objetivo es **crear un editor de texto simple**, basado en web, **que permita realizar operaciones comunes de edición sin acoplar la interfaz gráfica a la lógica de manipulación del texto**. El equipo desea que la aplicación sea **fácilmente extensible**, que **permita agregar nuevas operaciones sin modificar la interfaz existente**, y que **soporte funcionalidades como deshacer y rehacer**.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Durante la fase inicial del proyecto, los desarrolladores descubrieron que la interfaz estaba directamente llamando métodos que modificaban el texto del editor. Esto producía un fuerte acoplamiento entre la UI y la lógica interna, dificultando agregar nuevas operaciones o extender las existentes. Además, no existía una forma clara de implementar un historial de acciones para soportar deshacer y rehacer.
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-Para resolverlo, se solicita implementar la funcionalidad siguiendo el patrón de comportamiento Command, encapsulando cada operación de edición en un comando independiente.
+## Learn More
 
+To learn more about Next.js, take a look at the following resources:
 
-### El editor debe permitir al usuario realizar las siguientes acciones:
-- Insertar texto en la posición actual o reemplazando la selección.
-- Borrar el texto seleccionado.
-- Convertir la selección a mayúsculas o minúsculas.
-- Rodear la selección con caracteres (por ejemplo, ** para negrita o * para itálica).
-- Reemplazar todas las coincidencias de un patrón en el documento.
-- Deshacer y rehacer acciones ilimitadamente.
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-### La UI y la lógica de edición están fuertemente acopladas. Cada botón ejecuta directamente una operación del editor, lo que dificulta:
-- Extender el sistema.
-- Agregar nuevas operaciones.
-- Reutilizar acciones.
-- Implementar correctamente deshacer y rehacer.
-- Solución Esperada
+## Deploy on Vercel
 
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-### Aplicar el patrón Command, donde:
-- Las operaciones del editor se representen como objetos comando independientes.
-- El editor de texto actúe como Receiver, con métodos que realizan las modificaciones reales sobre el documento.
-- La UI actúe como Client, creando comandos cuando se presionan botones.
-- Un Invoker (CommandManager) se encargue de ejecutar comandos y manejar las pilas de deshacer/rehacer.
-
-#### El resultado debe ser un sistema desacoplado, donde agregar una nueva acción solo requiera crear un nuevo comando, sin modificar UI ni el Invoker.
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
