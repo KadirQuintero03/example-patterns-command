@@ -1,0 +1,32 @@
+@startuml Pattern 
+interface PaymentCommand {
+    + execute(amount:number):void
+}
+
+class BankTransferCommand {
+
+}
+
+class CardPaymentCommand {
+
+}
+
+class CryptoPaymentCommand {
+
+}
+
+
+class PaymentProcessor {
+    - command: PaymentCommand
+    + setCommand(command:PaymentCommand)
+    + pay(amount: number)
+}
+
+PaymentCommand <|-- BankTransferCommand
+PaymentCommand <|-- CardPaymentCommand
+PaymentCommand <|-- CryptoPaymentCommand
+
+PaymentProcessor --> PaymentCommand
+
+
+@enduml

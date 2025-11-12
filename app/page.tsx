@@ -15,6 +15,7 @@ import { CryptoPaymentCommand } from "./lib/patterns/command/commands/crypto-pay
 import { CardPaymentService } from "./lib/services/card-payment.service"
 import { BankTransferService } from "./lib/services/bank-transfer.service"
 import { CryptoPaymentService } from "./lib/services/crypto-payment.service"
+import { PaymentCommand } from "./lib/command-pattern"
 
 interface PaymentRecord {
   id: string
@@ -36,17 +37,16 @@ export default function Home() {
   const cardService = new CardPaymentService()
   const bankService = new BankTransferService()
   const cryptoService = new CryptoPaymentService()
+  
+
+  const mapPayment = new Map<string,PaymentCommand>([
+    ['card',new CardPaymentCommand(cardService)],
+    ['bank',new BankTransferCommand(bankService)],
+    ['crypto',new CryptoPaymentCommand(cryptoService)]])
 
   const handleSelectMethod = (method: "card" | "bank" | "crypto") => {
     setSelectedMethod(method)
     // Set appropriate command
-    if (method === "card") {
-      processor.setCommand(new CardPaymentCommand(cardService))
-    } else if (method === "bank") {
-      processor.setCommand(new BankTransferCommand(bankService))
-    } else if (method === "crypto") {
-      processor.setCommand(new CryptoPaymentCommand(cryptoService))
-    }
   }
 
   const handlePay = async () => {
@@ -59,9 +59,12 @@ export default function Home() {
         status: "error",
         message: "❌ Selecciona un método y un monto válido",
       }
+    
       setHistory([newRecord, ...history])
       return
     }
+    
+    
 
     setIsProcessing(true)
     setFlowActive(true)
@@ -81,7 +84,9 @@ export default function Home() {
       status: "success",
       message: `${methodEmojis[selectedMethod]} Pago procesado: $${numAmount.toFixed(2)} - ${methodNames[selectedMethod]}`,
     }
-
+    processor.setCommand(mapPayment.get(newRecord.type) as PaymentCommand)
+    processor.pay(Number.parseFloat(amount))
+    
     setHistory([newRecord, ...history])
     setAmount("")
     setFlowActive(false)
@@ -144,3 +149,4 @@ export default function Home() {
     </div>
   )
 }
+ 
