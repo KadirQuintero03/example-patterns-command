@@ -17,14 +17,6 @@ la lógica encargada de procesar cada tipo de pago estaba **fuertemente acoplada
 - Agregar un nuevo método de pago fuera complejo y arriesgado.
 - No existiera una estructura clara para representar el flujo de ejecución interno.
 
-
-### El equipo requería una solución que permitiera:
-- **Extender el sistema fácilmente** con nuevos métodos de pago.
-- Desacoplar la UI de los servicios reales que procesan pagos.
-- epresentar visualmente el flujo Command → Service → Resultado.
-- **Mantener un historial de pagos y resultados** sin contaminar la interfaz.
-
-
 ### Funcionalidades esperadas del sistema
 La aplicación debe permitir al usuario:
 
