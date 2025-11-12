@@ -1,32 +1,102 @@
-@startuml Pattern 
+@startuml Pattern Command - Payment System
+' PATRÓN COMMAND
+' Desacopla el objeto que invoca la operación del que sabe cómo ejecutarla
+
+' <<Interface Command>> - Define la interfaz común para todas las operaciones
 interface PaymentCommand {
     + execute(amount:number):void
 }
 
+' <<Concrete Commands>> - Implementan diferentes tipos de pagos
+' Encapsulan una petición como un objeto
 class BankTransferCommand {
-
+    - service: BankTransferService
+    + execute(amount:number):void
 }
 
 class CardPaymentCommand {
-
+    - service: CardPaymentService
+    + execute(amount:number):void
 }
 
 class CryptoPaymentCommand {
-
+    - service: CryptoPaymentService
+    + execute(amount:number):void
 }
 
+' <<Receivers>> - Saben cómo realizar la operación real
+' Contienen la lógica de negocio específica
+class BankTransferService {
+    + processTransfer(amount:number):void
+}
 
+class CardPaymentService {
+    + processCardPayment(amount:number):void
+}
+
+class CryptoPaymentService {
+    + processCryptoPayment(amount:number):void
+}
+
+' <<Invoker>> - Solicita al comando que ejecute la petición
+' No conoce los detalles de cómo se procesa el pago
 class PaymentProcessor {
     - command: PaymentCommand
-    + setCommand(command:PaymentCommand)
-    + pay(amount: number)
+    + setCommand(command:PaymentCommand):void
+    + pay(amount: number):void
 }
 
-PaymentCommand <|-- BankTransferCommand
-PaymentCommand <|-- CardPaymentCommand
-PaymentCommand <|-- CryptoPaymentCommand
+' <<Client>> - Crea los comandos concretos y los asocia con sus receptores
+class Client {
+}
 
-PaymentProcessor --> PaymentCommand
+' Relaciones del Patrón Command
+PaymentCommand <|.. BankTransferCommand : <<implements>>
+PaymentCommand <|.. CardPaymentCommand : <<implements>>
+PaymentCommand <|.. CryptoPaymentCommand : <<implements>>
 
+BankTransferCommand o--> BankTransferService : usa
+CardPaymentCommand o--> CardPaymentService : usa
+CryptoPaymentCommand o--> CryptoPaymentService : usa
+
+PaymentProcessor o--> PaymentCommand : ejecuta
+
+Client ..> PaymentProcessor : configura
+Client ..> BankTransferCommand : crea
+Client ..> CardPaymentCommand : crea
+Client ..> CryptoPaymentCommand : crea
+Client ..> BankTransferService : instancia
+Client ..> CardPaymentService : instancia
+Client ..> CryptoPaymentService : instancia
+
+note right of PaymentCommand
+  <b>INTERFAZ COMMAND</b>
+  Define el contrato que todos
+  los comandos deben cumplir
+end note
+
+note right of BankTransferCommand
+  <b>COMANDO CONCRETO</b>
+  Encapsula la petición y 
+  delega al Receiver
+end note
+
+note right of BankTransferService
+  <b>RECEIVER (Receptor)</b>
+  Contiene la lógica real
+  del procesamiento
+end note
+
+note left of PaymentProcessor
+  <b>INVOKER (Invocador)</b>
+  Ejecuta comandos sin conocer
+  sus detalles internos
+end note
+
+note bottom of Client
+  <b>CLIENT (Cliente)</b>
+  Ensambla comandos con receptores
+  y configura el invocador
+end note
 
 @enduml
