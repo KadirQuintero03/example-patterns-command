@@ -1,0 +1,70 @@
+@startuml Payment System WITHOUT Command Pattern
+
+' Cliente que usa directamente el procesador
+class Client {
+}
+
+' Procesador acoplado a todos los servicios
+class PaymentProcessor {
+    - bankService: BankTransferService
+    - cardService: CardPaymentService
+    - cryptoService: CryptoPaymentService
+    + PaymentProcessor(bankService, cardService, cryptoService)
+    + payWithBank(amount: number): void
+    + payWithCard(amount: number): void
+    + payWithCrypto(amount: number): void
+}
+
+' Servicios de pago
+class BankTransferService {
+    + processTransfer(amount: number): void
+}
+
+class CardPaymentService {
+    + processCardPayment(amount: number): void
+}
+
+class CryptoPaymentService {
+    + processCryptoPayment(amount: number): void
+}
+
+' Relaciones - Alto acoplamiento
+Client ..> PaymentProcessor : usa
+
+PaymentProcessor --> BankTransferService : depende
+PaymentProcessor --> CardPaymentService : depende
+PaymentProcessor --> CryptoPaymentService : depende
+
+note right of PaymentProcessor
+  <b>PROBLEMA: Alto Acoplamiento</b>
+  • Conoce TODOS los servicios
+  • Método específico para cada tipo
+  • Difícil de extender
+  • Viola Open/Closed Principle
+  • No hay abstracción
+end note
+
+note bottom of Client
+  <b>Cliente debe conocer:</b>
+  • Qué método llamar para cada pago
+  • payWithBank() vs payWithCard()
+  • Detalles de implementación
+end note
+
+note left of BankTransferService
+  <b>Servicios acoplados</b>
+  El procesador depende
+  directamente de clases
+  concretas
+end note
+
+note as N1
+  <b>Consecuencias negativas:</b>
+  ❌ Agregar nuevo método = modificar PaymentProcessor
+  ❌ No se puede cambiar comportamiento en runtime
+  ❌ Testing difícil (debe mockear todos los servicios)
+  ❌ Violación de principios SOLID
+  ❌ Código rígido y frágil
+end note
+
+@enduml

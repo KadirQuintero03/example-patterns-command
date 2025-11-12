@@ -24,6 +24,8 @@ export class PaymentProcessor {
     }
 }
 
+
+// flujo de como se estructura
 const service = new BankTransferService() // receptor -> optiene la logica de negocio real
 const command = new BankTransferCommand(service) // comadn concreto que parametriza la solicitud para luego llamar a la logica ()
 const payment = new PaymentProcessor()
